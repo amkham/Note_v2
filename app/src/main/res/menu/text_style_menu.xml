@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/bolt"
+        android:icon="@drawable/bold_text_icon_icons_com_71249"
+        android:title="bolt"
+        app:showAsAction="ifRoom"
+        >
+    </item>
+
+    <item
+        android:id="@+id/italic"
+        android:icon="@drawable/italic_symbol_icon_icons_com_53970"
+        android:title="italic"
+        android:contentDescription="italic"
+        android:enabled="true"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/under"
+        android:icon="@drawable/underlined_button_icon_icons_com_53850"
+        android:title="under"
+        android:contentDescription="under"
+        android:enabled="true"
+        app:showAsAction="ifRoom"/>
+
+</menu>
