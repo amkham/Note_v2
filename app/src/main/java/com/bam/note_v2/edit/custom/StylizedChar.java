@@ -2,34 +2,24 @@ package com.bam.note_v2.edit.custom;
 
 import androidx.annotation.NonNull;
 
-public class SymbolStyle {
+public class StylizedChar extends NoteBodyElement{
 
-    private char symbol;
 
     private TextStyle textStyle;
 
-    public SymbolStyle(char symbol, TextStyle textStyle) {
-        this.symbol = symbol;
+    public StylizedChar(String content, TextStyle textStyle) {
+        super(content);
         this.textStyle = textStyle;
     }
 
-    public SymbolStyle()
-    {}
 
-    public char getSymbol() {
-        return symbol;
-    }
-
-    public void setSymbol(char symbol) {
-        this.symbol = symbol;
-    }
 
 
     @NonNull
     @Override
     public String toString() {
 
-        String result = String.valueOf(symbol);
+        String result = super.getContent();
 
         if (textStyle.isBolt())  result = "<b>" + result + "</b>";
         if (textStyle.isItalic()) result = "<i>" + result + "</i>";

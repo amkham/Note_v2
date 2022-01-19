@@ -16,5 +16,5 @@ public interface INoteEditPresenter {
 
     void save();
 
-    void addImage(Uri uri) throws FileNotFoundException;
+    void addImage(Uri uri, int start, String txt) throws FileNotFoundException;
 }

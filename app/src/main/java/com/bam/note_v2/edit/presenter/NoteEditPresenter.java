@@ -1,7 +1,10 @@
 package com.bam.note_v2.edit.presenter;
 
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.text.InputType;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
 import android.text.style.ImageSpan;
 import android.view.Gravity;
 import android.view.ViewGroup;
@@ -24,7 +27,7 @@ public class NoteEditPresenter implements INoteEditPresenter{
 
     private NoteEditFragment fragment;
 
-    List<NoteView> noteViews = new ArrayList<>();
+    NoteView mNoteView;
 
     private String mTitle = "Пустая заметка";
 
@@ -32,6 +35,7 @@ public class NoteEditPresenter implements INoteEditPresenter{
     public NoteEditPresenter(NoteEditFragment fragment)
     {
         this.fragment = fragment;
+        mNoteView = new NoteView(fragment.requireContext());
     }
 
 
@@ -40,26 +44,18 @@ public class NoteEditPresenter implements INoteEditPresenter{
 
     @Override
     public void onBolt() {
-        for (NoteView editText: noteViews)
-        {
-            editText.onBolt();
-        }
+
+        mNoteView.onBolt();
     }
 
     @Override
     public void onItalic() {
-        for (NoteView editText: noteViews)
-        {
-            editText.onItalic();
-        }
+        mNoteView.onItalic();
     }
 
     @Override
     public void onUnder() {
-        for (NoteView editText: noteViews)
-        {
-            editText.onUnder();
-        }
+       mNoteView.onUnder();
     }
 
     @Override
@@ -86,45 +82,16 @@ public class NoteEditPresenter implements INoteEditPresenter{
 
 
     @Override
-    public void addImage(Uri uri) throws FileNotFoundException {
+    public void addImage(Uri uri, int start, String txt) throws FileNotFoundException {
 
-        fragment.addView(createImageView(uri));
-        fragment.addView(createEditText());
+        SpannableStringBuilder ssBuilder = new SpannableStringBuilder(txt);
+
+        ImageSpan imageSpan = new ImageSpan( fragment.requireContext(),uri);
+
+        ssBuilder.setSpan(imageSpan, start,start+1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        fragment.setImage(ssBuilder);
     }
 
-
-    public EditText createEditText()
-    {
-        NoteView editText = new NoteView(fragment.requireContext());
-        editText.setBackground(null);
-        editText.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
-        editText.setHeight(ViewGroup.LayoutParams.MATCH_PARENT);
-        editText.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
-        editText.setPadding(5,5,5,5);
-
-        noteViews.add(editText);
-
-        return editText;
-    }
-
-    public ImageView createImageView(Uri uri)
-    {
-        ImageView imageView = new ImageView(fragment.requireContext(), null, R.style.NoteBodyImage);
-        int id = ImageView.generateViewId();
-        imageView.setImageURI(uri);
-        imageView.setId(id);
-        imageView.setMaxWidth(ViewGroup.LayoutParams.MATCH_PARENT);
-        imageView.setMaxHeight(ViewGroup.LayoutParams.MATCH_PARENT);
-        imageView.setForegroundGravity(Gravity.START);
-        imageView.setPadding(5,5,5,5);
-        imageView.setScaleType(ImageView.ScaleType.FIT_START);
-
-        ImageSpan imageSpan = new ImageSpan(fragment.requireContext(), uri);
-
-
-        return imageView;
-
-    }
 
 
 

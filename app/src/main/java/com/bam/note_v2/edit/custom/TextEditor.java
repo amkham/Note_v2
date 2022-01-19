@@ -1,15 +1,11 @@
 package com.bam.note_v2.edit.custom;
 
-import android.net.Uri;
-import android.text.SpannableStringBuilder;
-import android.text.style.ImageSpan;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class TextEditor {
 
-    List<SymbolStyle> noteText = new ArrayList<>();
+    List<StylizedChar> noteText = new ArrayList<>();
 
     private NoteView mEditTextView;
 
@@ -20,7 +16,7 @@ public class TextEditor {
     }
 
 
-    public void addChars(List<SymbolStyle> symbols, int start)
+    public void addChars(List<StylizedChar> symbols, int start)
     {
        for (int i = symbols.size() - 1; i > -1 ; i--)
        {
@@ -43,7 +39,7 @@ public class TextEditor {
     }
 
 
-    public void changeText(List<SymbolStyle> symbols, int start, int end)
+    public void changeText(List<StylizedChar> symbols, int start, int end)
     {
 
         deleteChars(start, end);
@@ -51,21 +47,20 @@ public class TextEditor {
 
         int cursorPosition = start + symbols.size();
 
-        mEditTextView.updateText(getText(), cursorPosition);
+        mEditTextView.updateText(getHtmlText(), cursorPosition);
     }
 
 
-    public String getText()
+    public String getHtmlText()
     {
         StringBuilder stringBuilder = new StringBuilder();
-        for (SymbolStyle s : noteText)
+        for (StylizedChar s : noteText)
         {
             stringBuilder.append(s.toString());
         }
 
         return  stringBuilder.toString();
     }
-
 
 
 }
