@@ -35,6 +35,14 @@
                 android:layout_height="1dp"
                 android:background="@color/gray"/>
 
+            <com.bam.note_v2.edit.custom.view.NoteView
+                android:id="@+id/et_body"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:inputType="textMultiLine"
+                />
+
 
         </LinearLayout>
 

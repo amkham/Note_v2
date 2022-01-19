@@ -14,7 +14,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.bam.note_v2.R;
-import com.bam.note_v2.edit.custom.NoteView;
+import com.bam.note_v2.edit.custom.spannable.SpannableImage;
+import com.bam.note_v2.edit.custom.view.NoteView;
 import com.bam.note_v2.edit.presenter.NoteEditPresenter;
 import com.bam.note_v2.room.NoteEntity;
 import com.google.android.material.bottomappbar.BottomAppBar;
@@ -39,6 +40,9 @@ public class NoteEditFragment extends Fragment {
 
     public NoteEditFragment() {
 
+
+
+
     }
 
 
@@ -58,11 +62,8 @@ public class NoteEditFragment extends Fragment {
        mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
                 uri -> {
 
-                    try {
-                        presenter.addImage(uri, noteView.getSelectionStart(), noteView.getStylizedText());
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    }
+                    SpannableImage spannableImage = new SpannableImage(requireContext(), uri);
+                    noteView.setImage(spannableImage, noteView.getSelectionStart());
                 });
 
     }
@@ -73,11 +74,11 @@ public class NoteEditFragment extends Fragment {
 
         view = inflater.inflate(R.layout.fragment_note_edit, container, false);
 
-        noteView = new NoteView(this.requireContext());
-        addView(noteView);
-
-
+        noteView = view.findViewById(R.id.et_body);
         title = view.findViewById(R.id.et_title);
+
+
+
         bottomAppBar = view.findViewById(R.id.bottomAppBar);
 
         if (note != null) {
@@ -123,11 +124,6 @@ public class NoteEditFragment extends Fragment {
         title.setText(txt);
     }
 
-    public void addView(View v)
-    {
-        LinearLayout linearLayout = view.findViewById(R.id.note_edittext_container);
-        linearLayout.addView(v);
-    }
 
 
 

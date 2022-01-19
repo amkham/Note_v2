@@ -1,4 +1,4 @@
-package com.bam.note_v2.edit.custom;
+package com.bam.note_v2.edit.custom.view;
 
 public class TextStyle {
     private boolean bolt, italic, under;

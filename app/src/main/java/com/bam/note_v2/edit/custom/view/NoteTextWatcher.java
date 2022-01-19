@@ -1,21 +1,20 @@
-package com.bam.note_v2.edit.custom;
+package com.bam.note_v2.edit.custom.view;
 
 import android.text.Editable;
 import android.text.TextWatcher;
 
-import java.util.List;
-
 public class NoteTextWatcher implements TextWatcher {
 
 
-    private NoteTextChangeListener listener;
+    private TextChangeListener listener;
 
-    public interface NoteTextChangeListener
+
+    public interface TextChangeListener
     {
         void change(CharSequence sequence, int start, int end);
     }
 
-    public void setListener(NoteTextChangeListener listener) {
+    public void setListener(TextChangeListener listener) {
         this.listener = listener;
     }
 
