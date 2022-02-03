@@ -1,24 +1,34 @@
 package com.bam.note_v2.edit.custom.spannable;
 
-import android.text.SpannableString;
-import android.text.SpannableStringBuilder;
-
 public abstract class SpannableElement {
 
-    private String mContent;
+    private String __value;
+    private SpanElementType __type;
 
-    public SpannableElement(String element)
-    {
-        this.mContent = element;
+
+    public SpannableElement(String value, SpanElementType type) {
+
+        __value = value;
+        __type = type;
     }
 
-    public String getContent() {
-        return mContent;
+    public String getValue() {
+        return __value;
     }
 
-    public void setContent(String mContent) {
-        this.mContent = mContent;
+    public void setValue(String value) {
+        __value = value;
     }
 
-    public abstract SpannableString getSpan();
+    public SpanElementType getType() {
+        return __type;
+    }
+
+    public void setType(SpanElementType type) {
+        __type = type;
+    }
+
+    abstract public String getXml();
+
+    abstract public String getText();
 }

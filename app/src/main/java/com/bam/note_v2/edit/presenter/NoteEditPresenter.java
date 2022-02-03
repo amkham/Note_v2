@@ -1,66 +1,55 @@
 package com.bam.note_v2.edit.presenter;
 
-import android.net.Uri;
-import android.text.SpannableStringBuilder;
-import android.text.Spanned;
-import android.text.style.ImageSpan;
+import android.view.View;
 
-import androidx.room.Room;
+import com.bam.note_v2.edit.custom.INoteBodyElement;
+import com.bam.note_v2.room.NoteEntity;
 
-import com.bam.note_v2.edit.custom.spannable.SpannableImage;
-import com.bam.note_v2.edit.custom.view.NoteView;
-import com.bam.note_v2.edit.NoteEditFragment;
-import com.bam.note_v2.room.LocalDataBase;
-import com.bam.note_v2.room.NoteDao;
+import java.util.ArrayList;
+import java.util.List;
 
-import java.io.FileNotFoundException;
-
-public class NoteEditPresenter implements INoteEditPresenter{
-
-    private NoteEditFragment fragment;
+public class NoteEditPresenter implements INoteEditFragmentContract.Presenter{
 
 
-    private String mTitle = "Пустая заметка";
+    private List<INoteBodyElement> __noteBodyStructure = new ArrayList<>();
 
 
-    public NoteEditPresenter(NoteEditFragment fragment)
+    private INoteEditFragmentContract.EditFragment __editFragment;
+    private INoteEditFragmentContract.Model __model;
+
+
+
+    public NoteEditPresenter(INoteEditFragmentContract.EditFragment editFragment )
     {
-        this.fragment = fragment;
+        __editFragment = editFragment;
     }
 
 
 
+    public void addBodyElement(INoteBodyElement element)
+    {
+        __noteBodyStructure.add(element);
 
+    }
+
+    public void deleteBodyElement(INoteBodyElement element)
+    {
+        __noteBodyStructure.remove(element);
+    }
 
 
     @Override
-    public void changeTitle(String s) {
-        mTitle = s;
+    public void addView(View element) {
+
     }
-
-
-
 
     @Override
-    public void save() {
-
-       LocalDataBase db = Room.databaseBuilder(fragment.requireContext(), LocalDataBase.class, "note").build();
-       NoteDao statisticDao = db.noteDao();
-
-//        NoteEntity note = new NoteEntity(mTitle, textEditor.getText());
-//
-//        new Thread(() -> statisticDao.insert(note)).start();
-
+    public void deleteView(View element) {
 
     }
 
+    @Override
+    public void saveNote(NoteEntity noteEntity) {
 
-
-
-
-
-
-
-
-
+    }
 }

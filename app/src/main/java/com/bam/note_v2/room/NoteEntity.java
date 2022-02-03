@@ -2,27 +2,36 @@ package com.bam.note_v2.room;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
+
+import com.bam.note_v2.edit.custom.spannable.SpannableElement;
+import com.bam.note_v2.room.converters.SpannableElementsConverter;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 @Entity
 public class NoteEntity implements Serializable {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private Long id;
-    private String mTitle;
+    private String title;
 
-    private String mBody;
+    @TypeConverters({SpannableElementsConverter.class})
+    private List<SpannableElement> body = new ArrayList<>();
 
     private String mDate;
 
-    public NoteEntity(String mTitle, String mBody) {
-        this.mTitle = mTitle;
-        this.mBody = mBody;
+    public NoteEntity()
+    {
+        title = "Пустая заметка";
         updateDate();
+
     }
+
 
     public Long getId() {
         return id;
@@ -32,12 +41,21 @@ public class NoteEntity implements Serializable {
         this.id = id;
     }
 
-    public String getBody() {
-        return mBody;
+    public String getTitle() {
+        return title;
     }
 
-    public void setBody(String mBody) {
-        this.mBody = mBody;
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+
+    public List<SpannableElement> getBody() {
+        return body;
+    }
+
+    public void setBody(List<SpannableElement> body) {
+        this.body = body;
     }
 
     public void updateDate()
@@ -59,11 +77,4 @@ public class NoteEntity implements Serializable {
         this.mDate = mDate;
     }
 
-    public String getTitle() {
-        return mTitle;
-    }
-
-    public void setTitle(String mTitle) {
-        this.mTitle = mTitle;
-    }
 }

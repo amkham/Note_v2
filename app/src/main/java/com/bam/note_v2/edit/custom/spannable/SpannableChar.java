@@ -6,50 +6,60 @@ import android.text.Spanned;
 import android.text.style.StyleSpan;
 import android.text.style.UnderlineSpan;
 
-import androidx.annotation.NonNull;
+import java.io.Serializable;
+import java.text.MessageFormat;
+import java.util.Objects;
 
-import com.bam.note_v2.edit.custom.view.TextStyle;
-
-public class SpannableChar extends SpannableElement {
+public class SpannableChar extends SpannableElement implements Serializable {
 
 
-    private TextStyle textStyle;
+    private final TextStyle __textStyle;
 
-    public SpannableChar(String content, TextStyle textStyle) {
-        super(content);
-        this.textStyle = textStyle;
+    public SpannableChar(String value, TextStyle textStyle) {
+        super(value, SpanElementType.TEXT);
+        __textStyle = textStyle;
     }
 
 
-    public void setTextStyle(TextStyle textStyle) {
-        this.textStyle = textStyle;
-    }
-
-
-
-    @NonNull
-    @Override
-    public String toString() {
-
-        String result = super.getContent();
-
-        if (textStyle.isBolt())  result = "<b>" + result + "</b>";
-        if (textStyle.isItalic()) result = "<i>" + result + "</i>";
-        if (textStyle.isUnder()) result = "<u>" + result + "</u>";
-
-        return result;
-    }
-
-    @Override
     public SpannableString getSpan() {
 
-        SpannableString spannableString = new SpannableString(super.getContent());
+        SpannableString spannableString = new SpannableString(getValue());
 
 
-        if (textStyle.isBolt()) spannableString.setSpan(new StyleSpan(Typeface.BOLD), 0,1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        if (textStyle.isItalic()) spannableString.setSpan(new StyleSpan(Typeface.ITALIC), 0,1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        if (textStyle.isUnder()) spannableString.setSpan(new UnderlineSpan(), 0 , 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        if (__textStyle.isBolt()) spannableString.setSpan(new StyleSpan(Typeface.BOLD), 0,1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        if (__textStyle.isItalic()) spannableString.setSpan(new StyleSpan(Typeface.ITALIC), 0,1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        if (__textStyle.isUnder()) spannableString.setSpan(new UnderlineSpan(), 0 , 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         return spannableString;
     }
+
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SpannableChar that = (SpannableChar) o;
+        return __textStyle.equals(that.__textStyle) && super.getValue().equals(that.getValue());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(__textStyle);
+    }
+
+    public String getXml() {
+        return MessageFormat.format(
+                "<char>" +
+                        "<value>{0}</value> " +
+                        __textStyle.toXml() +
+                        "</char>", super.getValue());
+    }
+
+    @Override
+    public String getText() {
+        return super.getValue();
+    }
+
+
 }

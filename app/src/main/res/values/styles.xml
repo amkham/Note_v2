@@ -15,5 +15,12 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">start|top</item>
     </style>
+
+    <style name="StyledEditTextView" parent="Widget.AppCompat.EditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="background">@null</item>
+        <item name="android:inputType">textMultiLine</item>
+    </style>
 </resources>
 

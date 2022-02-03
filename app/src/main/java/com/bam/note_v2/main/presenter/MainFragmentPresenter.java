@@ -1,73 +1,54 @@
 package com.bam.note_v2.main.presenter;
 
-import android.os.AsyncTask;
+import android.util.Log;
 
-import androidx.room.Room;
-
-import com.bam.note_v2.main.NoteListFragment;
 import com.bam.note_v2.room.LocalDataBase;
 import com.bam.note_v2.room.NoteDao;
 import com.bam.note_v2.room.NoteEntity;
+import com.bam.note_v2.room.repository.IRepositoryContract;
+import com.bam.note_v2.room.repository.NoteRepository;
 
-import java.util.List;
+public class MainFragmentPresenter implements IMainFragmentContract.Presenter{
 
-public class MainFragmentPresenter implements IMainFragmentPresenter{
+    private IRepositoryContract.Model  __model;
+    private final IMainFragmentContract.View __fragment;
 
-    private final NoteListFragment noteListFragment;
+    public MainFragmentPresenter(IMainFragmentContract.View fragment) {
+        __fragment = fragment;
+        __model = initRepository();
+
+    }
 
 
-    public MainFragmentPresenter(NoteListFragment fragment)
+    @Override
+    public void onNoteClick(NoteEntity noteEntity) {
+
+    }
+
+    @Override
+    public NoteEntity createNote() {
+        NoteEntity _noteEntity = new NoteEntity();
+        __model.saveCallBack(_noteEntity, () -> {
+
+            Log.i("LOG", "Note save");
+        });
+        return _noteEntity;
+    }
+
+
+    @Override
+    public void loadNotes() {
+
+        __model.getAllCallBack(__fragment::createList);
+    }
+
+    private IRepositoryContract.Model initRepository()
     {
-        noteListFragment = fragment;
+        LocalDataBase _localDataBase = LocalDataBase.getDatabase(__fragment.requireContext());
+        NoteDao _noteDao = _localDataBase.noteDao();
+
+        return new NoteRepository(_noteDao);
     }
-
-    @Override
-    public void createNote() {
-
-    }
-
-    @Override
-    public void editNote(NoteEntity note) {
-
-    }
-
-    @Override
-    public void getAllNote() {
-
-        NoteTask noteTask = new NoteTask();
-        noteTask.execute();
-    }
-
-
-    class NoteTask extends AsyncTask<Void, Void, List<NoteEntity>>
-    {
-
-        @Override
-        protected List<NoteEntity> doInBackground(Void... voids) {
-            LocalDataBase db = Room.databaseBuilder(noteListFragment.requireContext(), LocalDataBase.class, "note").build();
-            NoteDao statisticDao = db.noteDao();
-
-            List<NoteEntity> result = statisticDao.getAll();
-            if (result.size() == 0)
-            {
-                for (int i=0; i < 15; i++)
-                {
-                    statisticDao.insert(new NoteEntity("title " +  i, "body " + i));
-                    result = statisticDao.getAll();
-                }
-            }
-
-            return result;
-        }
-
-        @Override
-        protected void onPostExecute(List<NoteEntity> noteEntities) {
-            super.onPostExecute(noteEntities);
-            noteListFragment.createNoteList(noteEntities);
-
-        }
-    }
-
 }
 
 

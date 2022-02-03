@@ -14,6 +14,7 @@
         android:clipToPadding="false"
         android:paddingBottom="100dp">
 
+
         <LinearLayout
             android:id="@+id/note_edittext_container"
             android:layout_width="match_parent"
@@ -22,26 +23,26 @@
             android:orientation="vertical">
 
             <EditText
-                android:id="@+id/et_title"
+                android:id="@+id/note_title"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:background="@null"
                 android:hint="Заметка"
                 android:padding="5dp"
-                android:inputType="text" />
+                android:inputType="text"
+                android:autofillHints="" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/gray"/>
 
-            <com.bam.note_v2.edit.custom.view.NoteView
-                android:id="@+id/et_body"
+            <LinearLayout
+                android:id="@+id/note_body"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@null"
-                android:inputType="textMultiLine"
-                />
+                android:orientation="vertical"/>
+
 
 
         </LinearLayout>
