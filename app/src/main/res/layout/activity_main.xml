@@ -8,6 +8,7 @@
     tools:context=".MainActivity">
 
 
+
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/note_nav_host_fragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
@@ -16,6 +17,7 @@
 
         app:defaultNavHost="true"
         app:navGraph="@navigation/note_nav_graph"/>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

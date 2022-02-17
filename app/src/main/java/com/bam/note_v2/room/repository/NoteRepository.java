@@ -1,98 +1,101 @@
 package com.bam.note_v2.room.repository;
 
+import android.os.AsyncTask;
+
+import androidx.lifecycle.LiveData;
+
 import com.bam.note_v2.room.NoteDao;
 import com.bam.note_v2.room.NoteEntity;
 
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
-public class NoteRepository implements IRepositoryContract.Model {
+public class NoteRepository implements IRepositoryContract {
 
 
-    public interface GetAllCallBack
+    public interface AsyncTaskCallBack
     {
-        void getAll(List<NoteEntity> entities);
+        void finish(NoteEntity note);
     }
 
-    public interface GetByIdCallBack
-    {
-        void getById(NoteEntity entity);
+    private AsyncTaskCallBack __asyncTaskCallBack;
+    public void setAsyncTaskCallBack(AsyncTaskCallBack asyncTaskCallBack) {
+        __asyncTaskCallBack = asyncTaskCallBack;
     }
 
-    public interface SaveCallBack
-    {
-        void saveNote();
-    }
-
-
-    private GetAllCallBack __getAllCallBack;
-    private GetByIdCallBack __getByIdCallBack;
-    private SaveCallBack __saveCallBack;
     private final NoteDao __noteDao;
 
     public NoteRepository(NoteDao noteDao) {
         __noteDao = noteDao;
     }
 
-    @Override
-    public void getAllCallBack(GetAllCallBack getAllCallBack) {
-        __getAllCallBack = getAllCallBack;
-        getAll();
-    }
+
 
     @Override
-    public void getByIdCallBack(Long id, GetByIdCallBack getByIdCallBack) {
-        __getByIdCallBack = getByIdCallBack;
-        getById(id);
-
-    }
-
-    @Override
-    public void saveCallBack(NoteEntity note, SaveCallBack saveCallBack) {
-        __saveCallBack = saveCallBack;
-        saveNote(note);
+    public LiveData<List<NoteEntity>> getAllInLiveData() throws IOException, XmlPullParserException {
+        return __noteDao.getAllInLiveData();
     }
 
 
-    private void getAll() {
+    @Override
+    public void insert(NoteEntity note) {
+
         new Thread(() -> {
-            try {
-                List<NoteEntity> _entities = __noteDao.getAll();
-                __getAllCallBack.getAll(_entities);
-            } catch (IOException | XmlPullParserException e) {
-                e.printStackTrace();
-                __getAllCallBack.getAll(new ArrayList<>());
-            }
+         __noteDao.insert(note);
         }).start();
     }
 
-    private void getById(Long id) {
-
-        new Thread(() -> {
-            try {
-                NoteEntity _noteEntity = __noteDao.getById(id);
-                __getByIdCallBack.getById(_noteEntity);
-            } catch (IOException | XmlPullParserException e) {
-                e.printStackTrace();
-                __getByIdCallBack.getById(null);
-            }
-        }).start();
+    @Override
+    public void delete(NoteEntity note) {
+        new Thread(() -> __noteDao.delete(note)).start();
     }
 
-    private void saveNote(NoteEntity note) {
+    @Override
+    public void createNote() {
 
-        new Thread(() -> {
-            __noteDao.insert(note);
-            __saveCallBack.saveNote();
-        }).start();
+        new CreateNoteTask().execute();
     }
 
+    @Override
+    public void getNoteById(int id) {
+
+        new GetNoteByIdTask().execute(id);
+
+    }
+
+    private class GetNoteByIdTask extends AsyncTask<Integer, Void, NoteEntity>
+    {
 
 
+        @Override
+        protected NoteEntity doInBackground(Integer... integers) {
 
+            return __noteDao.getNoteById(integers[0]);
+        }
+
+        @Override
+        protected void onPostExecute(NoteEntity noteEntity) {
+            __asyncTaskCallBack.finish(noteEntity);
+        }
+    }
+
+    private  class CreateNoteTask extends AsyncTask<Void, Void, NoteEntity>
+    {
+
+
+        @Override
+        protected NoteEntity doInBackground(Void... voids) {
+            __noteDao.insert(new NoteEntity());
+            return __noteDao.getLastCreatedNote();
+        }
+
+        @Override
+        protected void onPostExecute(NoteEntity noteEntity) {
+            __asyncTaskCallBack.finish(noteEntity);
+        }
+    }
 
 
 }

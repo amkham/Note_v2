@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="12" android:contentDescription="0.8"/>
+    <item android:title="14" android:contentDescription="1"/>
+    <item android:title="16" android:contentDescription="1.2"/>
+    <item android:title="18" android:contentDescription="1.4"/>
+    <item android:title="20" android:contentDescription="1.6"/>
+    <item android:title="22" android:contentDescription="1.8"/>
+
+</menu>

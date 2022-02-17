@@ -1,4 +1,4 @@
-package com.bam.note_v2.edit.custom.spannable;
+package com.bam.note_v2.edit.customview.spannable;
 
 public enum SpanElementType {
 

@@ -5,7 +5,10 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".edit.NoteEditFragment"
+    android:background="@drawable/main_bg"
     android:isScrollContainer="true">
+
+
 
 
     <androidx.core.widget.NestedScrollView
@@ -15,40 +18,48 @@
         android:paddingBottom="100dp">
 
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/note_edittext_container"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="start"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
             <EditText
                 android:id="@+id/note_title"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:background="@null"
-                android:hint="Заметка"
-                android:padding="5dp"
+                android:layout_height="match_parent"
+                android:background="@color/teal_700"
+                android:layout_alignParentTop="true"
+                android:textStyle="bold"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:hint="Заметка..."
                 android:inputType="text"
                 android:autofillHints="" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/gray"/>
 
             <LinearLayout
                 android:id="@+id/note_body"
+                android:layout_below="@id/note_title"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:padding="15dp"
                 android:orientation="vertical"/>
 
 
 
-        </LinearLayout>
+
+        </RelativeLayout>
 
 
     </androidx.core.widget.NestedScrollView>
+
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        layout="@layout/palette"/>
 
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottomAppBar"
@@ -57,8 +68,55 @@
         android:layout_gravity="bottom"
         style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
         app:navigationIcon="@drawable/ic_baseline_image_24"
-        app:menu="@menu/text_style_menu"
-        />
+        >
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_alignParentEnd="true">
+
+                <ImageView
+                    android:id="@+id/bolt_btn"
+                    style="@style/BottomAppBarIcon"
+                    android:background="@drawable/bolt_state"
+                    android:contentDescription="TODO" />
+                <ImageView
+                    android:id="@+id/italic_btn"
+                    style="@style/BottomAppBarIcon"
+                    android:background="@drawable/italic_state"
+                    android:contentDescription="TODO" />
+                <ImageView
+                    android:id="@+id/under_btn"
+                    style="@style/BottomAppBarIcon"
+                    android:background="@drawable/under_state"
+                    android:contentDescription="TODO" />
+
+                <ImageView
+                    android:id="@+id/paint_btn"
+                    style="@style/BottomAppBarIcon"
+                    android:background="@drawable/paint_ic"/>
+
+                <ImageView
+                    android:id="@+id/size_btn"
+                    style="@style/BottomAppBarIcon"
+                    android:background="@drawable/size_ic" />
+
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+
+    </com.google.android.material.bottomappbar.BottomAppBar>
+
+
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

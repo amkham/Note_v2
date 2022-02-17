@@ -2,10 +2,10 @@ package com.bam.note_v2.utils;
 
 import android.util.Xml;
 
-import com.bam.note_v2.edit.custom.spannable.SpannableChar;
-import com.bam.note_v2.edit.custom.spannable.SpannableElement;
-import com.bam.note_v2.edit.custom.spannable.SpannableImage;
-import com.bam.note_v2.edit.custom.spannable.TextStyle;
+import com.bam.note_v2.edit.customview.spannable.SpannableChar;
+import com.bam.note_v2.edit.customview.spannable.SpannableElement;
+import com.bam.note_v2.edit.customview.spannable.SpannableImage;
+import com.bam.note_v2.edit.customview.spannable.TextStyle;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -100,6 +100,8 @@ public class NoteStructureParser {
         parser.require(XmlPullParser.START_TAG, ns, "style");
 
         boolean bolt = false, italic = false, under = false;
+        float size = 1f;
+        String b_color = "#00FFFFFF";
 
         while (parser.next() != XmlPullParser.END_TAG){
             if (parser.getEventType() != XmlPullParser.START_TAG) {
@@ -110,11 +112,30 @@ public class NoteStructureParser {
                 case "b": bolt = readBolt(parser); break;
                 case "i": italic = readItalic(parser); break;
                 case "u": under = readUnder(parser); break;
+                case "size": size = readSize(parser); break;
+                case "bcolor": b_color = readBackgroundColor(parser); break;
             }
 
         }
 
-        return  new TextStyle(bolt, italic, under);
+        TextStyle _textStyle = new TextStyle(bolt, italic, under);
+        _textStyle.setTextSize(size);
+        _textStyle.setBackgroundColor(b_color);
+        return  _textStyle;
+    }
+
+    private String readBackgroundColor(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, ns, "bcolor");
+        String back = readText(parser);
+        parser.require(XmlPullParser.END_TAG, ns, "bcolor");
+        return back;
+    }
+
+    private float readSize(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, ns, "size");
+        float size = Float.parseFloat(readText(parser));
+        parser.require(XmlPullParser.END_TAG, ns, "size");
+        return size;
     }
 
     private boolean readUnder(XmlPullParser parser) throws IOException, XmlPullParserException {

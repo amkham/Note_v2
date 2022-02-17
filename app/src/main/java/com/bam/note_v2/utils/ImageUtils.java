@@ -26,14 +26,31 @@ public class ImageUtils {
         return MediaStore.Images.Media.getBitmap(context.getApplicationContext().getContentResolver(), uri);
     }
 
-    public  static String saveImg(Context context, Bitmap bitmap, String filename) throws IOException {
+    public  static String saveImg(Context context, Bitmap bitmap) throws IOException {
 
-        FileOutputStream fileOutputStream = context.getApplicationContext().openFileOutput(filename + ".jpg", Context.MODE_PRIVATE);
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 70, fileOutputStream);
-        fileOutputStream.flush();
-        fileOutputStream.close();
-        bitmap.recycle();
+        int count = 0;
 
-        return filename + ".jpg";
+
+        try {
+            while (true)
+            {
+                loadImg(context, count + ".jpg" );
+                count++;
+            }
+
+        }
+        catch (Exception e)
+        {
+            FileOutputStream fileOutputStream = context.getApplicationContext().openFileOutput(count + ".jpg", Context.MODE_PRIVATE);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 70, fileOutputStream);
+            fileOutputStream.flush();
+            fileOutputStream.close();
+            bitmap.recycle();
+        }
+
+
+
+
+        return count + ".jpg";
     }
 }

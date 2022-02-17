@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_noteListFragment_to_noteEditFragment"
             app:destination="@id/noteEditFragment" />
+        <action
+            android:id="@+id/action_noteListFragment_to_repostFragment"
+            app:destination="@id/repostFragment" />
     </fragment>
     <fragment
         android:id="@+id/noteEditFragment"
@@ -21,6 +24,15 @@
         tools:layout="@layout/fragment_note_edit" >
         <action
             android:id="@+id/action_noteEditFragment_to_noteListFragment"
+            app:destination="@id/noteListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/repostFragment"
+        android:name="com.bam.note_v2.RepostFragment"
+        android:label="fragment_repost"
+        tools:layout="@layout/fragment_repost" >
+        <action
+            android:id="@+id/action_repostFragment_to_noteListFragment"
             app:destination="@id/noteListFragment" />
     </fragment>
 </navigation>

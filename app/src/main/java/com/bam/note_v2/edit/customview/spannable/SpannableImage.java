@@ -1,4 +1,6 @@
-package com.bam.note_v2.edit.custom.spannable;
+package com.bam.note_v2.edit.customview.spannable;
+
+import android.text.SpannableString;
 
 import java.text.MessageFormat;
 
@@ -13,6 +15,11 @@ public class SpannableImage extends SpannableElement{
     public String getXml() {
         return  MessageFormat.format(
                 "<img>{0}</img>",getValue());
+    }
+
+    @Override
+    public SpannableString getSpan() {
+        return null;
     }
 
     @Override

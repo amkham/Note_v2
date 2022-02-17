@@ -2,7 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.bam.note_v2">
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />/>
+
+    <queries>
+        <package android:name="com.whatsapp" />
+    </queries>
 
     <application
         android:allowBackup="true"
@@ -11,6 +15,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Note_v2">
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-6252111849564700~4523012444"/>
+
         <activity
             android:name="com.bam.note_v2.MainActivity"
             android:exported="true">

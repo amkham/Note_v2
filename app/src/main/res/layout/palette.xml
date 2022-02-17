@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/palette_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:padding="15dp"
+    android:background="#63000000"
+    android:visibility="visible">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        app:cardCornerRadius="15dp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:gravity="center"
+        android:padding="5dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:text="Выберите цвет"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:gravity="center_horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/empty"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_margin="10dp"
+                android:backgroundTint="@color/white"
+                app:cardCornerRadius="50dp" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/blue"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_margin="10dp"
+                android:backgroundTint="@color/blue"
+                app:cardCornerRadius="50dp" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/red"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_margin="10dp"
+                android:backgroundTint="@color/red"
+                app:cardCornerRadius="50dp" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/orange"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_margin="10dp"
+                android:backgroundTint="@color/teal_200"
+                app:cardCornerRadius="50dp" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/green"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_margin="10dp"
+                android:backgroundTint="@color/green"
+                app:cardCornerRadius="50dp" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/purpur"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_margin="10dp"
+                android:backgroundTint="@color/purple_200"
+                app:cardCornerRadius="50dp" />
+
+        </LinearLayout>
+    </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>

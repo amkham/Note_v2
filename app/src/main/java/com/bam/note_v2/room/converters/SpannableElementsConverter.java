@@ -6,7 +6,7 @@ import android.content.Context;
 import androidx.room.ProvidedTypeConverter;
 import androidx.room.TypeConverter;
 
-import com.bam.note_v2.edit.custom.spannable.SpannableElement;
+import com.bam.note_v2.edit.customview.spannable.SpannableElement;
 import com.bam.note_v2.utils.NoteStructureParser;
 
 import java.util.List;

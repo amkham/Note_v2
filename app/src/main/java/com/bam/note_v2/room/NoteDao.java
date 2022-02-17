@@ -1,5 +1,6 @@
 package com.bam.note_v2.room;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -18,9 +19,15 @@ public interface NoteDao {
     @Query("SELECT * FROM NoteEntity")
     List<NoteEntity> getAll() throws IOException, XmlPullParserException;
 
+    @Query("SELECT * FROM NoteEntity")
+    LiveData<List<NoteEntity>> getAllInLiveData() throws IOException, XmlPullParserException;
 
-    @Query("SELECT * FROM NoteEntity WHERE :id = id ")
-    NoteEntity getById(Long id) throws IOException, XmlPullParserException;
+
+    @Query("SELECT * FROM NoteEntity WHERE id = (SELECT MAX(id) FROM NoteEntity)")
+    NoteEntity getLastCreatedNote();
+
+    @Query("SELECT * FROM NoteEntity WHERE id = :id")
+    NoteEntity getNoteById(int id);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(NoteEntity note);

@@ -1,4 +1,6 @@
-package com.bam.note_v2.edit.custom.spannable;
+package com.bam.note_v2.edit.customview.spannable;
+
+import android.text.SpannableString;
 
 public abstract class SpannableElement {
 
@@ -8,8 +10,8 @@ public abstract class SpannableElement {
 
     public SpannableElement(String value, SpanElementType type) {
 
-        __value = value;
         __type = type;
+        __value = value;
     }
 
     public String getValue() {
@@ -30,5 +32,9 @@ public abstract class SpannableElement {
 
     abstract public String getXml();
 
-    abstract public String getText();
+    abstract public SpannableString getSpan();
+
+    public String getText() {
+        return __value;
+    }
 }

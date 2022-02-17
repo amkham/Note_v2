@@ -2,7 +2,7 @@ package com.bam.note_v2.room.converters;
 
 import androidx.room.TypeConverter;
 
-import com.bam.note_v2.edit.custom.spannable.SpanElementType;
+import com.bam.note_v2.edit.customview.spannable.SpanElementType;
 
 public class ElementTypeConverter {
 

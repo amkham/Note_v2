@@ -5,7 +5,7 @@
 
     <item
         android:id="@+id/bolt"
-        android:icon="@drawable/bold_text_icon_icons_com_71249"
+        android:icon="@drawable/bolt_state"
         android:title="bolt"
         app:showAsAction="ifRoom"
         >
@@ -26,5 +26,6 @@
         android:contentDescription="under"
         android:enabled="true"
         app:showAsAction="ifRoom"/>
+
 
 </menu>
