@@ -357,25 +357,30 @@ public class NoteEditFragment extends Fragment implements IStyledCharListener {
         __getImageFromStorageCallBack = registerForActivityResult(new ActivityResultContracts.GetContent(), result -> {
 
             String _filename = "";
-            try {
-                Bitmap bitmap = ImageUtils.crateBitmapFromUri(requireContext(), result);
-                _filename = ImageUtils.saveImg(requireContext(), bitmap);
+            if (result != null)
+            {
+                try {
+                    Bitmap bitmap = ImageUtils.crateBitmapFromUri(requireContext(), result);
+                    _filename = ImageUtils.saveImg(requireContext(), bitmap);
 
-                SpannableImage _image = new SpannableImage(_filename);
-                NoteImageView _imageView = createImageView(getContext(), _image);
-                NoteTextView _textView = createEditText(getContext(), new ArrayList<>());
+                    SpannableImage _image = new SpannableImage(_filename);
+                    NoteImageView _imageView = createImageView(getContext(), _image);
+                    NoteTextView _textView = createEditText(getContext(), new ArrayList<>());
 
 
-                List<INoteBodyElement> _elements = __viewModel.getNoteBodyStructure().getValue();
+                    List<INoteBodyElement> _elements = __viewModel.getNoteBodyStructure().getValue();
 
-                _elements.add(_imageView);
-                _elements.add(_textView);
+                    _elements.add(_imageView);
+                    _elements.add(_textView);
 
-                __viewModel.getNoteBodyStructure().setValue(new ArrayList<>(_elements));
+                    __viewModel.getNoteBodyStructure().setValue(new ArrayList<>(_elements));
 
-            } catch (IOException e) {
-                e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
+
+
 
 
         });
