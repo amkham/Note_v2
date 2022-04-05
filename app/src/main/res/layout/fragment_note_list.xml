@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,29 +8,38 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".main.NoteListFragment">
 
-
-
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/main_recyclerview"
-        android:paddingTop="100dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/repost_header"
         tools:listitem="@layout/list_item"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
 
 
     </androidx.recyclerview.widget.RecyclerView>
 
-    <include layout="@layout/repost_layout"/>
+    <include layout="@layout/repost_layout" />
 
 
-   <ImageView
-       android:layout_width="150dp"
-       android:layout_height="120dp"
-       android:layout_gravity="bottom|end"
-       android:scaleType="fitEnd"
-       android:src="@drawable/add_btn_bg"/>
+    <TextView
+        android:id="@+id/repost_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/gray"
+        android:padding="2dp"
+        android:paddingStart="15dp"
+        android:text="@string/top_banner_text"
+        android:textColor="@color/white"
+        android:textSize="10sp" />
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="120dp"
+        android:layout_gravity="end|bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/add_btn_bg"/>
 
     <ImageView
         android:id="@+id/note_add_btn"
@@ -38,8 +47,10 @@
         android:layout_height="55dp"
         android:src="@drawable/add_btn"
         android:layout_margin="10dp"
-        android:layout_gravity="end|bottom"/>
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        />
 
 
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</RelativeLayout>

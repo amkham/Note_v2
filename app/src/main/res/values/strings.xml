@@ -1,9 +1,20 @@
 <resources>
-    <string name="app_name">Note_v2</string>
+    <string name="app_name">Notepad</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="positive">Да</string>
     <string name="negative">Отмена</string>
     <string name="note_body_hint">описание…</string>
+    <string name="top_banner_text"><![CDATA[<< отключение рекламы за репост >>]]></string>
+
+
+    <string-array name="text_size">
+        <item>12</item>
+        <item>14</item>
+        <item>16</item>
+        <item>18</item>
+        <item>20</item>
+        <item>22</item>
+    </string-array>
 </resources>

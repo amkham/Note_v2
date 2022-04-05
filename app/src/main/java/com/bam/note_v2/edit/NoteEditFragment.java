@@ -2,6 +2,7 @@ package com.bam.note_v2.edit;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.TransitionDrawable;
@@ -13,9 +14,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListPopupWindow;
 import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -25,9 +29,11 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
+import androidx.core.widget.ListPopupWindowCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.bam.note_v2.MainActivity;
 import com.bam.note_v2.R;
 import com.bam.note_v2.edit.customview.INoteBodyElement;
 import com.bam.note_v2.edit.customview.NoteImageView;
@@ -65,7 +71,6 @@ public class NoteEditFragment extends Fragment implements IStyledCharListener {
 
     private IViewModelContract.NoteEditFragment __viewModel;
 
-    private TextStyle __textStyle;
 
     private LinearLayout __paletteContainer;
 
@@ -75,7 +80,6 @@ public class NoteEditFragment extends Fragment implements IStyledCharListener {
 
     private float __textSize;
 
-    private RelativeLayout __relativeLayout;
 
     public NoteEditFragment() {
 
@@ -91,6 +95,7 @@ public class NoteEditFragment extends Fragment implements IStyledCharListener {
         initCallBacks();
 
     }
+
 
 
 
@@ -119,6 +124,7 @@ public class NoteEditFragment extends Fragment implements IStyledCharListener {
                 __viewModel.setTitle(s.toString());
             }
         });
+
 
 
         __viewModel = new ViewModelProvider(requireActivity()).get(NoteViewModel.class);
@@ -487,15 +493,19 @@ public class NoteEditFragment extends Fragment implements IStyledCharListener {
 
     private void showMenu(View v, int menuResource) {
 
-        PopupMenu _popup = new PopupMenu(requireContext(), v);
-        _popup.inflate(menuResource);
-        _popup.setOnMenuItemClickListener(item -> {
-            __textSize = Float.parseFloat(item.getContentDescription().toString());
+        ListPopupWindow _listPopupWindow = new ListPopupWindow(requireContext());
+        _listPopupWindow.setAnchorView(v);
+        _listPopupWindow.setWidth(250);
+        _listPopupWindow.setHeight(ListPopupWindow.WRAP_CONTENT);
+        String[] _values = getResources().getStringArray(R.array.text_size);
+        _listPopupWindow.setAdapter(new ArrayAdapter<>(requireContext(), R.layout.text_size_menu_item, _values));
+        _listPopupWindow.setOnItemClickListener((parent, view, position, id) -> {
+            __textSize = Float.parseFloat(_values[position]);
             notifyObservers(IObserver.Style.SIZE);
-            return false;
+            _listPopupWindow.dismiss();
         });
 
-        _popup.show();
+        _listPopupWindow.show();
     }
 
     private void changeBtnColor(View v, boolean state) {
@@ -517,6 +527,8 @@ public class NoteEditFragment extends Fragment implements IStyledCharListener {
 
 
     }
+
+
 
     @Override
     public void remove(IObserver.StyleObserver o) {
@@ -563,13 +575,11 @@ public class NoteEditFragment extends Fragment implements IStyledCharListener {
         }
     }
 
-
     @Override
     public void onStop() {
         super.onStop();
         Log.i(TAG, "stop");
         __viewModel.saveNote();
-
     }
 
     @Override

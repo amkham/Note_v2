@@ -129,7 +129,7 @@ public class NoteTextView extends EditText implements INoteBodyElement, IObserve
     @Override
     public void changeSize(float size) {
 
-        __size = size;
+        __size = size/14;
     }
 
     @Override
@@ -143,9 +143,6 @@ public class NoteTextView extends EditText implements INoteBodyElement, IObserve
 
 
             preparationList(elements.size(), start, end);
-
-
-
 
             int index = start;
             for (SpannableChar e : elements) {

@@ -24,18 +24,14 @@ android {
         applicationId "com.bam.note_v2"
         minSdk 27
         targetSdk 31
-        versionCode 3
-        versionName "0.1"
+        versionCode 5
+        versionName "0.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.relize
-        }
+
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -67,6 +63,8 @@ dependencies {
     def fragment_version = "1.4.1"
     implementation "androidx.fragment:fragment:$fragment_version"
 
-    implementation 'com.google.android.gms:play-services-ads:20.5.0'
+
+    implementation 'com.yandex.android:mobileads:5.0.0-beta.1'
+    implementation 'com.yandex.android:mobmetricalib:4.1.1'
 
 }

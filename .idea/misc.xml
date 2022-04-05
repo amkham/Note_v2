@@ -46,6 +46,49 @@
         <entry key="..\:/Users/betir/AndroidStudioProjects/Note_v2/app/src/main/res/layout/repost_layout.xml" value="0.33695652173913043" />
         <entry key="..\:/Users/betir/AndroidStudioProjects/Note_v2/app/src/main/res/menu/menu_text_size.xml" value="0.3625" />
         <entry key="..\:/Users/betir/AndroidStudioProjects/Note_v2/app/src/main/res/menu/text_style_menu.xml" value="0.15462962962962962" />
+        <entry key="..\:/Users/betir/Downloads/Note_v2/app/src/main/res/drawable/ic_baseline_check_circle_outline_24.xml" value="0.1585" />
+        <entry key="..\:/Users/betir/Downloads/Note_v2/app/src/main/res/drawable/ic_baseline_radio_button_unchecked_24.xml" value="0.1585" />
+        <entry key="..\:/Users/betir/Downloads/Note_v2/app/src/main/res/drawable/repost_check_state.xml" value="0.1585" />
+        <entry key="..\:/Users/betir/Downloads/Note_v2/app/src/main/res/layout/activity_main.xml" value="0.1828125" />
+        <entry key="..\:/Users/betir/Downloads/Note_v2/app/src/main/res/layout/ad_item.xml" value="0.3625" />
+        <entry key="..\:/Users/betir/Downloads/Note_v2/app/src/main/res/layout/fragment_note_edit.xml" value="0.17426545086119555" />
+        <entry key="..\:/Users/betir/Downloads/Note_v2/app/src/main/res/layout/fragment_note_list.xml" value="0.33" />
+        <entry key="..\:/Users/betir/Downloads/Note_v2/app/src/main/res/layout/fragment_repost.xml" value="0.1828125" />
+        <entry key="..\:/Users/betir/Downloads/Note_v2/app/src/main/res/layout/list_item.xml" value="0.1828125" />
+        <entry key="..\:/Users/betir/Downloads/Note_v2/app/src/main/res/layout/repost_layout.xml" value="0.22" />
+        <entry key="..\:/Users/betir/Downloads/Note_v2/app/src/main/res/layout/text_size_menu_item.xml" value="0.35833333333333334" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/Note_v2/app/src/main/res/drawable-v24/bolt_state.xml" value="0.184" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/Note_v2/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.184" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/Note_v2/app/src/main/res/drawable-v24/italic_state.xml" value="0.184" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/Note_v2/app/src/main/res/drawable-v24/under_state.xml" value="0.1" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/Note_v2/app/src/main/res/drawable/bold_defalt.xml" value="0.184" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/Note_v2/app/src/main/res/drawable/bold_selected.xml" value="0.184" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/Note_v2/app/src/main/res/drawable/card_bg.xml" value="0.184" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/Note_v2/app/src/main/res/drawable/ic_baseline_check_circle_outline_24.xml" value="0.184" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/Note_v2/app/src/main/res/drawable/ic_knopkapod.xml" value="0.184" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/Note_v2/app/src/main/res/drawable/ic_launcher_background.xml" value="0.184" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/Note_v2/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.184" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/Note_v2/app/src/main/res/drawable/italic_ic.xml" value="0.184" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/Note_v2/app/src/main/res/drawable/italic_selected.xml" value="0.184" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/Note_v2/app/src/main/res/drawable/note_add_btn_bg.xml" value="0.184" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/Note_v2/app/src/main/res/drawable/paint_ic.xml" value="0.184" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/Note_v2/app/src/main/res/drawable/repost_check_state.xml" value="0.184" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/Note_v2/app/src/main/res/drawable/size_ic.xml" value="0.184" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/Note_v2/app/src/main/res/drawable/under_ic.xml" value="0.184" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/Note_v2/app/src/main/res/drawable/under_selected.xml" value="0.184" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/Note_v2/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/Note_v2/app/src/main/res/layout/ad_item.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/Note_v2/app/src/main/res/layout/fragment_note_edit.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/Note_v2/app/src/main/res/layout/fragment_note_list.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/Note_v2/app/src/main/res/layout/fragment_repost.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/Note_v2/app/src/main/res/layout/list_item.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/Note_v2/app/src/main/res/layout/palette.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/Note_v2/app/src/main/res/layout/repost_layout.xml" value="0.15497076023391812" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/Note_v2/app/src/main/res/menu/menu_text_size.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/Note_v2/app/src/main/res/menu/text_style_menu.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/Note_v2/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.184" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/Note_v2/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.184" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/Note_v2/app/src/main/res/mipmap-xhdpi/ic_launcher.xml" value="0.184" />
       </map>
     </option>
   </component>
