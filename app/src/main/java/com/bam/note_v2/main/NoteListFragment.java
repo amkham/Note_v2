@@ -274,9 +274,7 @@ public class NoteListFragment extends Fragment {
         __getContactSelectCallBack = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
 
             if (result.getData() != null) {
-                String _msg = "https://ok.ru/notepad.rus\n" +
-                        "скачать с Play Market:\n" +
-                        "https://play.google.com/store/apps/details?id=com.bam.note_v2";
+                String _msg = "https://wa.me/p/5075279445864199/79914319514";
 
                 String number = result.getData().getStringExtra("contact");
 

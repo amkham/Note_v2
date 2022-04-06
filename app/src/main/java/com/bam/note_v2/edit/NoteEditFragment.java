@@ -2,9 +2,9 @@ package com.bam.note_v2.edit;
 
 import android.Manifest;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.TransitionDrawable;
 import android.os.Bundle;
 import android.text.Editable;
@@ -20,8 +20,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListPopupWindow;
-import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -29,11 +29,9 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
-import androidx.core.widget.ListPopupWindowCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.bam.note_v2.MainActivity;
 import com.bam.note_v2.R;
 import com.bam.note_v2.edit.customview.INoteBodyElement;
 import com.bam.note_v2.edit.customview.NoteImageView;
@@ -491,26 +489,42 @@ public class NoteEditFragment extends Fragment implements IStyledCharListener {
             changeBtnColor(v, __onItalic);
         });
 
-        _size_btn.setOnClickListener(v -> showMenu(v, R.menu.menu_text_size));
+        _size_btn.setOnClickListener(this::showMenu);
 
 
     }
 
-    private void showMenu(View v, int menuResource) {
 
+
+    private int __itemId = 1;
+
+    private void showMenu(View v) {
         ListPopupWindow _listPopupWindow = new ListPopupWindow(requireContext());
         _listPopupWindow.setAnchorView(v);
         _listPopupWindow.setWidth(250);
         _listPopupWindow.setHeight(ListPopupWindow.WRAP_CONTENT);
         String[] _values = getResources().getStringArray(R.array.text_size);
-        _listPopupWindow.setAdapter(new ArrayAdapter<>(requireContext(), R.layout.text_size_menu_item, _values));
+
+         ArrayAdapter<String> _arrayAdapter
+                = new TextSizeMenuAdapter(requireContext(), R.layout.text_size_menu_item, _values, __itemId);
+        _listPopupWindow.setAdapter(_arrayAdapter);
+
+
+
         _listPopupWindow.setOnItemClickListener((parent, view, position, id) -> {
             __textSize = Float.parseFloat(_values[position]);
             notifyObservers(IObserver.Style.SIZE);
+            __itemId = position;
             _listPopupWindow.dismiss();
+
         });
 
+
+
         _listPopupWindow.show();
+
+
+
     }
 
     private void changeBtnColor(View v, boolean state) {
