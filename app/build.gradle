@@ -9,12 +9,12 @@ android {
             storeFile file('C:\\Users\\betir\\Documents\\ApKeys\\noteKey.jks')
             storePassword 'hKs67Fxo9'
             keyPassword 'hKs67Fxo9'
-            keyAlias 'keyNoteSimple'
+            keyAlias 'bam'
         }
         relize {
             storeFile file('C:\\Users\\betir\\Documents\\ApKeys\\noteKey.jks')
             storePassword 'hKs67Fxo9'
-            keyAlias 'bam_noteSimple'
+            keyAlias 'bam'
             keyPassword 'hKs67Fxo9'
         }
     }
